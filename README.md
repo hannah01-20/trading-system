@@ -2,7 +2,7 @@
 Pure REST API for simple trading system. User can buy stocks and make orders.
 
 features:
-- Token Authentication (Include in request header Authorization Ex. Bearer <Token>)
+- Token Authentication (Include in request header Authorization Ex. Bearer < Token >)
 - Stock CRUD operation
 - Order CRUD operation
 
