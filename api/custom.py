@@ -5,7 +5,6 @@ class CustomAuthentication(TokenAuthentication):
     """
     Change user request header authorization from "Token" to "Bearer"
     """
-    
     keyword = "Bearer"
 
 class IsUnAuthenticated(BasePermission):
