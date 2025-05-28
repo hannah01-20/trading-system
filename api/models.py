@@ -6,12 +6,6 @@ class Stock(models.Model):
     price = models.DecimalField(default=1, decimal_places=2, max_digits=9)
 
 class Order(models.Model):
-    stock_id = models.ForeignKey(Stock, on_delete = models.CASCADE)
-    user_id = models.ForeignKey(User, on_delete = models.CASCADE)
+    stock = models.ForeignKey(Stock, related_name = "order", verbose_name="stock", on_delete = models.CASCADE)
+    user = models.ForeignKey(User, related_name = "order", verbose_name="user", on_delete = models.CASCADE)
     quantity = models.PositiveBigIntegerField(default = 1)
-
-    def total_amount(self):
-        stocks = Stock.objects.filter(id = self.stock_id)
-        total = sum(stock.price for stock in stocks)
-
-        return total
