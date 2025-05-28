@@ -53,9 +53,26 @@ class StockView(APIView):
             return Response(message, status.HTTP_500_INTERNAL_SERVER_ERROR)
             
         
-
-
 class StockDetailsView(APIView):
+    def get(self, reques, pk):
+        try:
+            stock = Stock.objects.get(id = pk)
+            serializer = StockSerializer(stock)
+
+            return Response(serializer.data, status.HTTP_200_OK)
+
+        except Stock.DoesNotExist as e:
+            message = {"error": f"Data doesn't exist. {e}"}
+            return Response(message, status.HTTP_404_NOT_FOUND)
+        
+        except DatabaseError as e:
+            message = {"error": f"Database error occurred. {e}"}
+            return Response(message, status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+        except Exception as e:
+            message = {"error": f"Something went wrong. {e}"}
+            return Response(message, status.HTTP_500_INTERNAL_SERVER_ERROR)
+
     def put(self, request, pk):
         try:
             data = request.data
@@ -85,7 +102,6 @@ class StockDetailsView(APIView):
             message = {"error": f"Something went wrong. {e}"}
             return Response(message, status.HTTP_500_INTERNAL_SERVER_ERROR)  
         
-    
     def delete(self, request, pk):
         try:
             stock = Stock.objects.get(id = pk)
@@ -103,6 +119,4 @@ class StockDetailsView(APIView):
         
         except Exception as e:
             message = {"error": f"Something went wrong. {e}"}
-            return Response(message, status.HTTP_500_INTERNAL_SERVER_ERROR) 
-
-        
+            return Response(message, status.HTTP_500_INTERNAL_SERVER_ERROR)      
