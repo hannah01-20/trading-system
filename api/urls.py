@@ -8,5 +8,5 @@ urlpatterns = [
     path("stocks/", StockView.as_view(), name = "stocks"),
     path("stocks/<int:pk>/", StockDetailsView.as_view(), name="stock"),
     path("orders/", OrderView.as_view(), name = "orders"),
-    path("orders/<int:pk>", OrderDetailsView.as_view(), name = "order"),
+    path("orders/<int:pk>/", OrderDetailsView.as_view(), name = "order"),
 ]
