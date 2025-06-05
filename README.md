@@ -14,7 +14,7 @@ Endpoints:
 - "/api/stocks/:id/" GET, PUT, DELETE
 - "/api/orders/" GET, POST
 - "/api/orders/:id/" GET, PUT, DELETE
-- "/portfolio/" GET
+- "/api/portfolio/" GET
 
 ## Run in local
 Recommended to have virtual environment active
